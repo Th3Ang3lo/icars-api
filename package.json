@@ -10,6 +10,9 @@
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --exit-child --ignore-watch node_modules src/server.ts",
     "start": "npx prisma generate --schema src/infra/database/schema.prisma && node dist/server.js",
+    "seed:categories": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --exit-child --ignore-watch node_modules src/infra/database/seeds/categories.ts",
+    "seed:vehicles": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/infra/database/seeds/vehicles.ts",
+    "seed": "yarn seed:categories && yarn seed:vehicles",
     "db:push": "prisma db push --schema src/infra/database/schema.prisma",
     "db:pull": "prisma db pull --schema src/infra/database/schema.prisma",
     "test": "jest --passWithNoTests --runInBand --no-cache"
