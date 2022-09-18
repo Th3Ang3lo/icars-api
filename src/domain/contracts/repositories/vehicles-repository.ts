@@ -4,4 +4,5 @@ export type Vehicle = Prisma.VehiclesUncheckedCreateInput
 
 export interface IVehiclesRepository {
   findByCategory: (categoryId: number) => Promise<Vehicle[]>
+  findAll: () => Promise<Vehicle[]>
 }

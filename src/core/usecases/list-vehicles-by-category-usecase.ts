@@ -2,7 +2,7 @@ import { ListVehiclesUseCaseOutput } from '@/domain/contracts/usecases/list-vehi
 
 import { IVehiclesRepository } from '@/domain/contracts/repositories/vehicles-repository'
 
-export class ListVehiclesUseCase {
+export class ListVehiclesByCategoryUseCase {
   constructor (
     private readonly vehiclesRepository: IVehiclesRepository
   ) { }

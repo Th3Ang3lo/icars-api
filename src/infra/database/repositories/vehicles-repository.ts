@@ -15,4 +15,14 @@ export class VehiclesRepository implements IVehiclesRepository {
 
     return data as Vehicle[]
   }
+
+  public async findAll (): Promise<Vehicle[]> {
+    const data = await prismaClient.vehicles.findMany({
+      include: {
+        vehicleImages: true
+      }
+    })
+
+    return data as Vehicle[]
+  }
 }

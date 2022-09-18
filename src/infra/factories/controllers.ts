@@ -6,7 +6,8 @@ import { ListVehiclesController } from '@/controllers/list-vehicles-controller'
 
 import {
   listCategoriesUseCase,
-  listVehiclesUseCase
+  listVehiclesByCategoryUseCase,
+  listAllVehiclesUseCase
 } from './usecases'
 
 export const listCategoriesController: Response = () => {
@@ -20,7 +21,8 @@ export const listCategoriesController: Response = () => {
 export const listVehiclesController: Response = () => {
   return adapter(
     new ListVehiclesController(
-      listVehiclesUseCase()
+      listVehiclesByCategoryUseCase(),
+      listAllVehiclesUseCase()
     )
   )
 }
