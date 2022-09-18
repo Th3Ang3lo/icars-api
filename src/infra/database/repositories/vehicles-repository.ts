@@ -7,9 +7,12 @@ export class VehiclesRepository implements IVehiclesRepository {
     const data = await prismaClient.vehicles.findMany({
       where: {
         categoryId
+      },
+      include: {
+        vehicleImages: true
       }
     })
 
-    return data
+    return data as Vehicle[]
   }
 }
