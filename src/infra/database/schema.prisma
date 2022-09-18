@@ -10,6 +10,7 @@ datasource db {
 model Categories {
   id                   Int      @id @db.SmallInt @default(autoincrement())
   category             String   @db.VarChar
+  logo                 String   @db.VarChar
   created_at           DateTime @default(now())
   updated_at           DateTime @default(now())
 
