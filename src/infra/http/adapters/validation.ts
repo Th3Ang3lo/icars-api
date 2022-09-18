@@ -7,7 +7,8 @@ import { BadRequestException } from '@/shared/exceptions'
 export enum ValidationEnum {
   BODY = 'body',
   PARAMS = 'params',
-  QUERY = 'query'
+  QUERY = 'query',
+  FILE = 'file'
 }
 
 export const yupValidationAdapter = async (validation: any, data: any): Promise<void> => {
@@ -22,7 +23,18 @@ export const yupValidationAdapter = async (validation: any, data: any): Promise<
 
 export const expressValidationAdapter = (validation: any, type: ValidationEnum = ValidationEnum.BODY) =>
   async (request: Request, response: Response, next: NextFunction) => {
-    await yupValidationAdapter(validation, request[type])
+    try {
+      await yupValidationAdapter(validation, request[type])
 
-    next()
+      next()
+    } catch (error) {
+      if (process.env.NODE_ENV === 'dev') {
+        console.log(error)
+      }
+
+      return response.status(error.statusCode || 500).send({
+        message: error.errorMessage || 'Internal Server Error',
+        field: error.param || undefined
+      })
+    }
   }
