@@ -7,16 +7,28 @@ datasource db {
   url      = env("POSTGRES_URL")
 }
 
-model Users {
-  id                   String   @id @unique @db.Uuid @default(uuid())
-  name                 String   @db.VarChar
-  email                String   @unique @db.VarChar
-  password             String   @db.VarChar
-  picture              String   @db.VarChar
-  phone                String?  @db.VarChar
-  password_reset_token String?   @db.VarChar
-  token_expires_at     DateTime? @default(now())
+model Categories {
+  id                   Int      @id @db.SmallInt @default(autoincrement())
+  category             String   @db.VarChar
   created_at           DateTime @default(now())
   updated_at           DateTime @default(now())
-  @@map("users")
+
+  vehicles Vehicles[]
+
+  @@map("categories")
+}
+
+model Vehicles {
+  id                   Int      @id @db.SmallInt @default(autoincrement())
+  name                 String   @db.VarChar
+  description          String   @db.Text
+  year                 String   @db.VarChar
+  created_at           DateTime @default(now())
+  updated_at           DateTime @default(now())
+
+  categoryId           Int      @db.SmallInt
+
+  categories Categories? @relation(fields: [categoryId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@map("vehicles")
 }
