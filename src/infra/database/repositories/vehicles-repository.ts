@@ -25,4 +25,14 @@ export class VehiclesRepository implements IVehiclesRepository {
 
     return data as Vehicle[]
   }
+
+  public async findById (id: number): Promise<Vehicle> {
+    const data = await prismaClient.vehicles.findFirst({
+      where: {
+        id
+      }
+    })
+
+    return data
+  }
 }
