@@ -1,5 +1,9 @@
-import { TestUseCase } from '@/core/usecases/test-usecase'
+import { ListCategoriesUseCase } from '@/core/usecases/list-categories-usecase'
 
-export const testUseCase = (): TestUseCase => {
-  return new TestUseCase()
+import { CategoriesRepository } from '@/infra/database/repositories/categories-repository'
+
+export const listCategoriesUseCase = (): ListCategoriesUseCase => {
+  return new ListCategoriesUseCase(
+    new CategoriesRepository()
+  )
 }

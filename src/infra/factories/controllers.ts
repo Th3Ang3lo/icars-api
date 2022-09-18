@@ -1,14 +1,16 @@
-import { TestController } from '@/controllers/test-controller'
 import { Response } from '@/domain/contracts/controller'
-
 import { controllerAdapter as adapter } from '@/infra/http/adapters/controller'
 
-import { testUseCase } from './usecases'
+import { ListCategoriesController } from '@/controllers/list-categories-controller'
 
-export const testController: Response = () => {
+import {
+  listCategoriesUseCase
+} from './usecases'
+
+export const listCategoriesController: Response = () => {
   return adapter(
-    new TestController(
-      testUseCase()
+    new ListCategoriesController(
+      listCategoriesUseCase()
     )
   )
 }

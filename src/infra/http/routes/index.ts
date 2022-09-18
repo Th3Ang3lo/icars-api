@@ -1,7 +1,7 @@
 import { Router } from 'express'
 
-import { testController } from '@/infra/factories/controllers'
+import { listCategoriesController } from '@/infra/factories/controllers'
 
 export const Routes = Router()
 
-Routes.get('/test', testController())
+Routes.get('/categories', listCategoriesController())
