@@ -1,6 +1,6 @@
 import { prismaClient } from '@/infra/database'
 
-import { IRatingsRepository, Rating } from '@/domain/contracts/repositories/ratings-repository'
+import { IRatingsRepository, Rating, ListRating } from '@/domain/contracts/repositories/ratings-repository'
 
 export class RatingsRepository implements IRatingsRepository {
   public async create (ratingData: Rating): Promise<Rating> {
@@ -9,5 +9,23 @@ export class RatingsRepository implements IRatingsRepository {
     })
 
     return data
+  }
+
+  public async findAll (vehicleId: number, page: number, limit: number): Promise<ListRating> {
+    const data = await prismaClient.$transaction([
+      prismaClient.ratings.count(),
+      prismaClient.ratings.findMany({
+        skip: page,
+        take: limit,
+        where: {
+          vehicleId
+        }
+      })
+    ])
+
+    return {
+      total: data[0],
+      data: data[1]
+    }
   }
 }

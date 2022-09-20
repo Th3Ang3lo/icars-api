@@ -3,13 +3,15 @@ import { controllerAdapter as adapter } from '@/infra/http/adapters/controller'
 
 import { ListCategoriesController } from '@/controllers/list-categories-controller'
 import { ListVehiclesController } from '@/controllers/list-vehicles-controller'
-import { PostRatingController } from '@/controllers/post-rating-controller'
+import { PostRatingController } from '@/controllers/ratings/post-rating-controller'
+import { ListRatingsController } from '@/controllers/ratings/list-ratings-controller'
 
 import {
   listCategoriesUseCase,
   listVehiclesByCategoryUseCase,
   listAllVehiclesUseCase,
-  postRatingUseCase
+  postRatingUseCase,
+  listRatingsUseCase
 } from './usecases'
 
 export const listCategoriesController: Response = () => {
@@ -33,6 +35,14 @@ export const postRatingController: Response = () => {
   return adapter(
     new PostRatingController(
       postRatingUseCase()
+    )
+  )
+}
+
+export const listRatingsController: Response = () => {
+  return adapter(
+    new ListRatingsController(
+      listRatingsUseCase()
     )
   )
 }
