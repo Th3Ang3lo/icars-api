@@ -13,7 +13,11 @@ export class RatingsRepository implements IRatingsRepository {
 
   public async findAll (vehicleId: number, page: number, limit: number): Promise<ListRating> {
     const data = await prismaClient.$transaction([
-      prismaClient.ratings.count(),
+      prismaClient.ratings.count({
+        where: {
+          vehicleId
+        }
+      }),
       prismaClient.ratings.findMany({
         skip: page,
         take: limit,
