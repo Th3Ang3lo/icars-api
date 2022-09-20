@@ -1,6 +1,6 @@
 import { Controller, Request, Response } from '@/domain/contracts/controller'
 
-import { PostRatingUseCase } from '@/core/usecases/post-rating-usecase'
+import { PostRatingUseCase } from '@/core/usecases/ratings/post-rating-usecase'
 
 export class PostRatingController implements Controller {
   constructor (

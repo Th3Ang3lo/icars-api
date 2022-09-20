@@ -1,4 +1,4 @@
-import { PostRatingUseCaseOutput } from '@/domain/contracts/usecases/post-rating-usecase'
+import { PostRatingUseCaseOutput } from '@/domain/contracts/usecases/ratings/post-rating-usecase'
 
 import { IRatingsRepository, Rating } from '@/domain/contracts/repositories/ratings-repository'
 import { IVehiclesRepository } from '@/domain/contracts/repositories/vehicles-repository'
