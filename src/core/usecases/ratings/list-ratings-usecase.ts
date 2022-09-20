@@ -17,8 +17,14 @@ export class ListRatingsUseCase {
 
     const { total, data } = await this.ratingRepository.findAll(vehicleId, page - 1, limit)
 
+    const totalOfNotes = Object.values(data)
+      .reduce((acc, rating) => acc + rating.note, 0)
+
+    const average = Math.round(totalOfNotes / total)
+
     return {
       total,
+      average,
       data
     }
   }
