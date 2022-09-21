@@ -35,7 +35,12 @@ docker-compose up -d
 yarn db:push
 ```
 
-7 - Starting the project
+7 - Running seeds
+```zsh
+yarn seed
+```
+
+8 - Starting the project
 ```zsh
 yarn dev
 ```
