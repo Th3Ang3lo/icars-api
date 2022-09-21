@@ -9,7 +9,11 @@ export class VehiclesRepository implements IVehiclesRepository {
         categoryId
       },
       include: {
-        vehicleImages: true
+        vehicleImages: {
+          orderBy: {
+            id: 'asc'
+          }
+        }
       }
     })
 
@@ -19,7 +23,11 @@ export class VehiclesRepository implements IVehiclesRepository {
   public async findAll (): Promise<Vehicle[]> {
     const data = await prismaClient.vehicles.findMany({
       include: {
-        vehicleImages: true
+        vehicleImages: {
+          orderBy: {
+            id: 'asc'
+          }
+        }
       }
     })
 
